@@ -125,7 +125,7 @@ function deleteMasterRecord(bytes32 key) public ... {
 In the spirit of bumpers and guard rails, the `remove()` method requires that the key to be removed actually exists. Similarly, duplicate key inserts are prevented.
 
 ## Deployment
-Load the example and the dependencies (2) in Remix and enjoy.
+Load the example and the dependencies in Remix and enjoy.
 
 ## Tests
 
