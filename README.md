@@ -107,13 +107,13 @@ Example (for illustration, does not run):
 using HitchensUnorderedKeySetLib for HitchensUnorderedKeySetLib.Set;
 HitchensUnorderedKeySetLib.Set masterKeySet;
 
-struct MasterThings {
+struct MasterThing {
   uint something;
   uint somethingElse;
   HitchensUnorderedKeySet.Set whereUsedSet;
 }
 
-mapping(bytes32 => PrimaryTable) masterThings;
+mapping(bytes32 => MasterThing) masterThings;
 
 function deleteMasterRecord(bytes32 key) public ... {
   require(masterKeySet.exists(key);
