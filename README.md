@@ -93,6 +93,8 @@ contract Widget {
 }
 ```
 
+A production dapp would probably have access control for the state-changing functions. This is deliberately set aside for brevity and to show that the library is unopinionated about how that should work. For example, add `onlyOwner` modifiers to `newWidget()`, `updateWidget()` and `remWidget()` functions if appropriate.
+
 ### Motivation
 
 The [Solidity CRUD pattern](https://medium.com/@robhitchens/solidity-crud-part-1-824ffa69509a) is a reliable way of managing arbitrary data sets with transient members. However, contracts that implement multiple or nested sets tend to become cognitively heavy for developers and reviewers. 
