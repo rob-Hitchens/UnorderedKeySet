@@ -116,7 +116,6 @@ struct MasterThing {
 mapping(bytes32 => MasterThing) masterThings;
 
 function deleteMasterRecord(bytes32 key) public ... {
-  require(masterKeySet.exists(key);
   require(masterThings[key].whereUsed.count() == 0);
   masterKeySet.remove(key);
   delete masterThings[key];
