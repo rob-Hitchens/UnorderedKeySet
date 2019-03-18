@@ -23,7 +23,7 @@ plus
 - Iterate
 - verify existance
 
-### Scale-invariant
+### Scale Invariant
 
 The operations in this pattern produce consistent gas cost *at any scale*. 
 
