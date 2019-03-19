@@ -66,7 +66,7 @@ contract HitchensUnorderedKeySet is Ownable {
     }
     
     function keyAtIndex(uint index) public view returns(bytes32) {
-        return set.keyList[index];
+        return set.keyAtIndex(index);
     }
     
 }
