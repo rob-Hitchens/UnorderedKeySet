@@ -10,7 +10,7 @@ Use this library to implement Create, Retrieve, Update and Delete operations in 
 
 While it is true that blockchain data is immutable, there are frequently cases when a logical delete from a set is required. For example, a set of subscribers where the subscribers are transient. 
 
-While several patterns exist (e.g. set a `bool active = false`) such structures frequently lead to the need to iterate over data and this leads to gas cost increases with scale which is unacceptable in many cases. See [Getting Loppy with Solidity](https://blog.b9lab.com/getting-loopy-with-solidity-1d51794622ad). The [Solidity CRUD pattern](https://medium.com/@robhitchens/solidity-crud-part-1-824ffa69509a) is a general-purpose CRUD solution:
+While several patterns exist (e.g. set a `bool active = false`) such structures frequently lead to the need to iterate over data and this leads to gas cost increases with scale which is unacceptable in many cases. See [Getting Loopy with Solidity](https://blog.b9lab.com/getting-loopy-with-solidity-1d51794622ad). The [Solidity CRUD pattern](https://medium.com/@robhitchens/solidity-crud-part-1-824ffa69509a) is a general-purpose CRUD solution:
 
 - Create
 - Retrieve
