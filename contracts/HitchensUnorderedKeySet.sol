@@ -1,5 +1,38 @@
 pragma solidity 0.5.1; 
 
+/* 
+Hitchens UnorderedKeySet v0.91
+
+Library for managing CRUD operations in dynamic key sets.
+
+https://github.com/rob-Hitchens/UnorderedKeySet
+
+Copyright (c) Rob Hitchens. the MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Significant portions from BokkyPooBahsRedBlackTreeLibrary, 
+https://github.com/bokkypoobah/BokkyPooBahsRedBlackTreeLibrary
+
+THIS SOFTWARE IS NOT TESTED OR AUDITED. DO NOT USE FOR PRODUCTION.
+*/
+
 import "./Ownable.sol";
 
 library HitchensUnorderedKeySetLib {
@@ -10,12 +43,12 @@ library HitchensUnorderedKeySetLib {
     }
     
     function insert(Set storage self, bytes32 key) internal {
-        require(!exists(self, key), "UnorderedKeySet(501) - Key already exists in the set.");
+        require(!exists(self, key), "UnorderedKeySet(101) - Key already exists in the set.");
         self.keyPointers[key] = self.keyList.push(key)-1;
     }
     
     function remove(Set storage self, bytes32 key) internal {
-        require(exists(self, key), "UnorderedKeySet(502) - Key does not exist in the set.");
+        require(exists(self, key), "UnorderedKeySet(102) - Key does not exist in the set.");
         bytes32 keyToMove = self.keyList[count(self)-1];
         uint rowToReplace = self.keyPointers[key];
         self.keyPointers[keyToMove] = rowToReplace;
@@ -37,6 +70,9 @@ library HitchensUnorderedKeySetLib {
         return self.keyList[index];
     }
     
+    function nukeSet(Set storage self) public {
+        delete self.keyList;
+    }
 }
 
 
@@ -68,5 +104,5 @@ contract HitchensUnorderedKeySet is Ownable {
     function keyAtIndex(uint index) public view returns(bytes32) {
         return set.keyAtIndex(index);
     }
-    
 }
+
