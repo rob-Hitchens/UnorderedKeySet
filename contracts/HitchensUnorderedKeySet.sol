@@ -76,7 +76,7 @@ library HitchensUnorderedKeySetLib {
 }
 
 
-contract HitchensUnorderedKeySet is Ownable {
+contract HitchensUnorderedKeySet {
     
     using HitchensUnorderedKeySetLib for HitchensUnorderedKeySetLib.Set;
     HitchensUnorderedKeySetLib.Set set;
@@ -104,5 +104,8 @@ contract HitchensUnorderedKeySet is Ownable {
     function keyAtIndex(uint index) public view returns(bytes32) {
         return set.keyAtIndex(index);
     }
+    
+    function nukeSet() public {
+        set.nukeSet();
+    }
 }
-
