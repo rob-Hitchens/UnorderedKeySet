@@ -54,16 +54,16 @@ library HitchensUnorderedKeySetLib {
         self.keyList.length--;
     }
     
-    function count(Set storage self) public view returns(uint) {
+    function count(Set storage self) internal view returns(uint) {
         return(self.keyList.length);
     }
     
-    function exists(Set storage self, bytes32 key) public view returns(bool) {
+    function exists(Set storage self, bytes32 key) internal view returns(bool) {
         if(self.keyList.length == 0) return false;
         return self.keyList[self.keyPointers[key]] == key;
     }
     
-    function keyAtIndex(Set storage self, uint index) public view returns(bytes32) {
+    function keyAtIndex(Set storage self, uint index) internal view returns(bytes32) {
         return self.keyList[index];
     }
     
