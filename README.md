@@ -129,6 +129,11 @@ In the spirit of bumpers and guard rails, the `remove()` method requires that th
 ## Deployment
 Load the example and the dependencies in Remix and enjoy.
 
+Two variants:
+
+- `...KeySet.sol` uses bytes32 keys. 
+- `...AddressSet.sol` uses addresses. 
+
 ## Tests
 
 NO TESTING OF ANY KIND HAS BEEN PERFORMED AND YOU USE THIS LIBRARY AT YOUR OWN EXCLUSIVE RISK.
