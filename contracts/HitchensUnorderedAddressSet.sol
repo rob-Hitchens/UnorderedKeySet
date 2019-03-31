@@ -40,7 +40,7 @@ library HitchensUnorderedAddressSetLib {
     }
     
     function insert(Set storage self, address key) internal {
-        require(!exists(self, key), "UnorderedAddressSet(101) - Address already exists in the set.");
+        require(!exists(self, key), "UnorderedAddressSet(101) - Key already exists in the set.");
         self.keyPointers[key] = self.keyList.push(key)-1;
     }
     
