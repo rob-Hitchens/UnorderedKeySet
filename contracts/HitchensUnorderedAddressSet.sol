@@ -40,12 +40,12 @@ library HitchensUnorderedAddressSetLib {
     }
     
     function insert(Set storage self, address key) internal {
-        require(!exists(self, key), "UnorderedAddressSet(101) - Key already exists in the set.");
+        require(!exists(self, key), "UnorderedAddressSet(101) - Address (key) already exists in the set.");
         self.keyPointers[key] = self.keyList.push(key)-1;
     }
     
     function remove(Set storage self, address key) internal {
-        require(exists(self, key), "UnorderedKeySet(102) - Key does not exist in the set.");
+        require(exists(self, key), "UnorderedKeySet(102) - Address (key) does not exist in the set.");
         address keyToMove = self.keyList[count(self)-1];
         uint rowToReplace = self.keyPointers[key];
         self.keyPointers[keyToMove] = rowToReplace;
@@ -72,36 +72,35 @@ library HitchensUnorderedAddressSetLib {
     }
 }
 
-
 contract HitchensUnorderedAddressSet {
-    
+
     using HitchensUnorderedAddressSetLib for HitchensUnorderedAddressSetLib.Set;
     HitchensUnorderedAddressSetLib.Set set;
-    
+
     event LogUpdate(address sender, string action, address key);
-    
+
     function exists(address key) public view returns(bool) {
         return set.exists(key);
     }
-    
+
     function insert(address key) public {
         set.insert(key);
         emit LogUpdate(msg.sender, "insert", key);
     }
-    
+
     function remove(address key) public {
         set.remove(key);
         emit LogUpdate(msg.sender, "remove", key);
     }
-    
+
     function count() public view returns(uint) {
         return set.count();
     }
-    
+
     function keyAtIndex(uint index) public view returns(address) {
         return set.keyAtIndex(index);
     }
-    
+
     function nukeSet() public {
         set.nukeSet();
     }
