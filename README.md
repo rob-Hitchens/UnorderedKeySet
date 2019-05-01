@@ -21,7 +21,7 @@ plus
 
 - Count
 - Iterate
-- verify existance
+- Verify existance
 
 ### Scale Invariant
 
