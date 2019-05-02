@@ -1,7 +1,7 @@
 pragma solidity 0.5.1; 
 
 /* 
-Hitchens UnorderedAddressSet v0.92
+Hitchens UnorderedAddressSet v0.93
 
 Library for managing CRUD operations in dynamic address sets.
 
@@ -30,8 +30,6 @@ SOFTWARE.
 THIS SOFTWARE IS NOT TESTED OR AUDITED. DO NOT USE FOR PRODUCTION.
 */
 
-import "./Ownable.sol";
-
 library HitchensUnorderedAddressSetLib {
     
     struct Set {
@@ -40,6 +38,7 @@ library HitchensUnorderedAddressSetLib {
     }
     
     function insert(Set storage self, address key) internal {
+        require(key != address(0), "UnorderedKeySet(100) - Key cannot be 0x0");
         require(!exists(self, key), "UnorderedAddressSet(101) - Address (key) already exists in the set.");
         self.keyPointers[key] = self.keyList.push(key)-1;
     }
@@ -72,36 +71,3 @@ library HitchensUnorderedAddressSetLib {
     }
 }
 
-contract HitchensUnorderedAddressSet {
-
-    using HitchensUnorderedAddressSetLib for HitchensUnorderedAddressSetLib.Set;
-    HitchensUnorderedAddressSetLib.Set set;
-
-    event LogUpdate(address sender, string action, address key);
-
-    function exists(address key) public view returns(bool) {
-        return set.exists(key);
-    }
-
-    function insert(address key) public {
-        set.insert(key);
-        emit LogUpdate(msg.sender, "insert", key);
-    }
-
-    function remove(address key) public {
-        set.remove(key);
-        emit LogUpdate(msg.sender, "remove", key);
-    }
-
-    function count() public view returns(uint) {
-        return set.count();
-    }
-
-    function keyAtIndex(uint index) public view returns(address) {
-        return set.keyAtIndex(index);
-    }
-
-    function nukeSet() public {
-        set.nukeSet();
-    }
-}
