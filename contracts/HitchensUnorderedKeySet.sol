@@ -1,13 +1,13 @@
 pragma solidity 0.5.1; 
 
 /* 
-Hitchens UnorderedKeySet v0.91
+Hitchens UnorderedKeySet v0.93
 
 Library for managing CRUD operations in dynamic key sets.
 
 https://github.com/rob-Hitchens/UnorderedKeySet
 
-Copyright (c) Rob Hitchens. the MIT License
+Copyright (c), 2019, Rob Hitchens, the MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,6 @@ SOFTWARE.
 THIS SOFTWARE IS NOT TESTED OR AUDITED. DO NOT USE FOR PRODUCTION.
 */
 
-import "./Ownable.sol";
-
 library HitchensUnorderedKeySetLib {
     
     struct Set {
@@ -40,6 +38,7 @@ library HitchensUnorderedKeySetLib {
     }
     
     function insert(Set storage self, bytes32 key) internal {
+        require(key != 0x0, "UnorderedKeySet(100) - Key cannot be 0x0");
         require(!exists(self, key), "UnorderedKeySet(101) - Key already exists in the set.");
         self.keyPointers[key] = self.keyList.push(key)-1;
     }
@@ -71,7 +70,6 @@ library HitchensUnorderedKeySetLib {
         delete self.keyList;
     }
 }
-
 
 contract HitchensUnorderedKeySet {
     
