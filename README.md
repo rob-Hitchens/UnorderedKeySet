@@ -29,7 +29,7 @@ The operations in this pattern produce consistent gas cost *at any scale*.
 
 ### Example Implementation
 
-An data set with an arbitrary layout can be implemented in clean, unrepetitive code. Example, to play around in Remix:
+A data set with an arbitrary layout can be implemented in clean, unrepetitive code. Example, to play around in Remix:
 
 ```
 pragma solidity 0.5.1;
