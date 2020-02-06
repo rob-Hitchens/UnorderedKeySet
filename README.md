@@ -1,3 +1,5 @@
+See https://github.com/rob-Hitchens/SetTypes for newer experimental version. 
+
 ## Hitchens Unordered Key Set 
 
 [https://github.com/rob-Hitchens/UnorderedKeySet](https://github.com/rob-Hitchens/UnorderedKeySet)
