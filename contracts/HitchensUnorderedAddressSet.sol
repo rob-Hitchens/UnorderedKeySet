@@ -65,9 +65,5 @@ library HitchensUnorderedAddressSetLib {
     function keyAtIndex(Set storage self, uint index) internal view returns(address) {
         return self.keyList[index];
     }
-    
-    function nukeSet(Set storage self) public {
-        delete self.keyList;
-    }
 }
 
