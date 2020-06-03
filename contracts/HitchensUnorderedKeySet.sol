@@ -99,8 +99,4 @@ contract HitchensUnorderedKeySet {
     function keyAtIndex(uint index) public view returns(bytes32) {
         return set.keyAtIndex(index);
     }
-    
-    function nukeSet() public {
-        set.nukeSet();
-    }
 }
