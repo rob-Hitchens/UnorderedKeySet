@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.0;
+pragma solidity ^0.8.4;
 
 /*
 Hitchens UnorderedAddressSet v0.93
@@ -31,7 +31,11 @@ SOFTWARE.
 THIS SOFTWARE IS NOT TESTED OR AUDITED. DO NOT USE FOR PRODUCTION.
 */
 
-library HitchensUnorderedAddressSetLib {
+library HitchensUnorderedAddressSetLib {    
+
+    error UnorderedKeySet100AddressCannotBe0x0();
+    error UnorderedAddressSet101AddressAlreadyExistsInSet();
+    error UnorderedKeySet102AddressDoesNotExistInSet();
 
     struct Set {
         mapping(address => uint) keyPointers;
@@ -39,14 +43,20 @@ library HitchensUnorderedAddressSetLib {
     }
 
     function insert(Set storage self, address key) internal {
-        require(key != address(0), "UnorderedKeySet(100) - Key cannot be 0x0");
-        require(!exists(self, key), "UnorderedAddressSet(101) - Address (key) already exists in the set.");
+        if(key == address(0)) {
+            revert UnorderedKeySet100AddressCannotBe0x0();
+        }
+        if(exists(self, key)) {
+            revert UnorderedAddressSet101AddressAlreadyExistsInSet();
+        }
         self.keyList.push(key);
         self.keyPointers[key] = self.keyList.length - 1;
     }
 
     function remove(Set storage self, address key) internal {
-        require(exists(self, key), "UnorderedKeySet(102) - Address (key) does not exist in the set.");
+        if(!exists(self, key)) {
+            revert UnorderedKeySet102AddressDoesNotExistInSet();
+        }
         address keyToMove = self.keyList[count(self)-1];
         uint rowToReplace = self.keyPointers[key];
         self.keyPointers[keyToMove] = rowToReplace;
@@ -68,4 +78,3 @@ library HitchensUnorderedAddressSetLib {
         return self.keyList[index];
     }
 }
-
